@@ -23,9 +23,9 @@ const mouse = {
 }
 
 /* Resize */
-function resizeHandler () {
+function resizeHandler() {
   const bounding = svg.el.getBoundingClientRect()
-  
+
   svg.width = bounding.width
   svg.height = bounding.height
   svg.x = bounding.left
@@ -33,11 +33,11 @@ function resizeHandler () {
 }
 
 /* Create dots */
-function createDots () {
+function createDots() {
   resizeHandler()
-  
+
   const dotSize = circle.radius + circle.margin
-  
+
   const rows = Math.floor(svg.height / dotSize)
   const cols = Math.floor(svg.width / dotSize)
 
@@ -85,30 +85,30 @@ function createDots () {
 }
 
 /* Check mouse move */
-function mouseHandler (e) {
+function mouseHandler(e) {
   mouse.x = e.pageX
   mouse.y = e.pageY
 }
 
 /* Check mouse speed */
-function mouseSpeed () {
-    const distX = mouse.prevX - mouse.x
-    const distY = mouse.prevY - mouse.y
-    const dist = Math.hypot(distX, distY)
+function mouseSpeed() {
+  const distX = mouse.prevX - mouse.x
+  const distY = mouse.prevY - mouse.y
+  const dist = Math.hypot(distX, distY)
 
-    mouse.speed += (dist - mouse.speed) * 0.5
-    if (mouse.speed < 0.001) {
-      mouse.speed = 0
-    }
+  mouse.speed += (dist - mouse.speed) * 0.5
+  if (mouse.speed < 0.001) {
+    mouse.speed = 0
+  }
 
-    mouse.prevX = mouse.x
-    mouse.prevY = mouse.y
-  
-    setTimeout(mouseSpeed, 20)
+  mouse.prevX = mouse.x
+  mouse.prevY = mouse.y
+
+  setTimeout(mouseSpeed, 20)
 }
 
 /* Tick */
-function tick () {
+function tick() {
   dots.forEach(dot => {
     const distX = mouse.x - svg.x - dot.position.x
     const distY = mouse.y - svg.y - dot.position.y
@@ -135,22 +135,34 @@ function tick () {
     dot.el.setAttribute('cx', dot.smooth.x)
     dot.el.setAttribute('cy', dot.smooth.y)
   })
-  
+
   requestAnimationFrame(tick)
 }
 
 /* Ready */
-(function() {
+(function () {
   // Resize
   window.addEventListener('resize', resizeHandler)
-  
+
+  // Mouse
   // Mouse
   window.addEventListener('mousemove', mouseHandler)
+
+  // Touch
+  function touchHandler(e) {
+    if (e.touches.length > 0) {
+      mouse.x = e.touches[0].pageX
+      mouse.y = e.touches[0].pageY
+    }
+  }
+  window.addEventListener('touchstart', touchHandler)
+  window.addEventListener('touchmove', touchHandler)
+
   mouseSpeed()
 
   // Dots
   createDots()
-  
+
   // Tick
   tick()
 })()

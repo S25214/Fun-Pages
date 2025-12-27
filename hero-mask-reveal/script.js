@@ -29,6 +29,21 @@ function onMouseMove(e) {
 }
 window.addEventListener('mousemove', onMouseMove)
 
+// Touch move
+function onTouchMove(e) {
+  if (e.touches.length > 0) {
+    // e.preventDefault() // Optional: prevent scrolling if desired
+    const touch = e.touches[0]
+    mouse.vx += mouse.x - touch.pageX
+    mouse.vy += mouse.y - touch.pageY
+
+    mouse.x = touch.pageX
+    mouse.y = touch.pageY
+  }
+}
+window.addEventListener('touchstart', onTouchMove, { passive: false })
+window.addEventListener('touchmove', onTouchMove, { passive: false })
+
 // Resize
 function onResize() {
   viewport.width = window.innerWidth
