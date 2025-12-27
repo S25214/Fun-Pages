@@ -8,6 +8,10 @@ body {
   align-items: center;
   justify-content: center;
   background: black;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 svg {
