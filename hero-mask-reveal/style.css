@@ -1,0 +1,208 @@
+.s-hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #f1f0f9;
+  cursor: auto;
+  color: #0c0b0e;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.s-hero .s__title {
+  position: absolute;
+  top: 2vw;
+  left: 2vw;
+  margin: 0;
+  padding: 0;
+  font-size: 1.25vw;
+}
+
+.s-hero .s__catcher {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-weight: 700;
+  font-size: 13vw;
+  letter-spacing: -0.025em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.s-hero .s__burger {
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 56px;
+  height: 48px;
+}
+
+.s-hero .s__burger__line {
+  margin: 5px 0;
+  width: 100%;
+  height: 2px;
+  background: #0c0b0e;
+}
+
+.s-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0c0b0e;
+  -webkit-mask: url(#mask);
+  mask: url(#mask);
+  color: #f1f0f9;
+  pointer-events: none;
+}
+
+.s-scene .s__title {
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  left: 2vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: 700;
+  font-size: 13vw;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+}
+
+.s-scene .s__title__line:nth-child(2) {
+  margin-left: auto;
+}
+
+.s-scene .s__word {
+  --max-scale: 3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-family: "Climate Crisis", sans-serif;
+  font-size: 20vw;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@-webkit-keyframes char-scale {
+  0% {
+    scale: 1 0.1;
+  }
+
+  50% {
+    scale: 1 var(--max-scale);
+  }
+
+  100% {
+    scale: 1 0.1;
+  }
+}
+
+@keyframes char-scale {
+  0% {
+    scale: 1 0.1;
+  }
+
+  50% {
+    scale: 1 var(--max-scale);
+  }
+
+  100% {
+    scale: 1 0.1;
+  }
+}
+
+.s-scene .s__word__char {
+  -webkit-animation: char-scale 1.25s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  animation: char-scale 1.25s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  transform-origin: 50% 86.5%;
+}
+
+.s-scene .s__word__char:nth-child(1) {
+  color: #fe6319;
+}
+
+.s-scene .s__word__char:nth-child(2) {
+  color: #ff68a8;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+
+.s-scene .s__word__char:nth-child(3) {
+  color: #009800;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.cursor {
+  position: fixed;
+  top: -1.5vw;
+  left: -1.5vw;
+  z-index: 2;
+  width: 3vw;
+  height: 3vw;
+  background: #88f901;
+  border-radius: 50%;
+  transform: translate3d(var(--x), var(--y), 0);
+  pointer-events: none;
+}
+
+.s-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.s-hero {
+  cursor: auto !important;
+}
+
+.nav-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  background: white;
+  color: #333;
+  border-radius: 50%;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  transform: scale(1.1);
+  background: #f0f0f0;
+}
